@@ -502,16 +502,18 @@ body.scrolled .fixed-header {
   margin: 4px 0;
 }
 
-/* Social links dock below avatar */
+/* Social links dock below intro */
 .avatar-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
 }
-.avatar-block .social-links {
-  justify-content: space-between;
-  margin-top: 1rem;
+.social-links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
   gap: 0;
   padding: 0.5rem 0.6rem;
   background: linear-gradient(
@@ -528,14 +530,10 @@ body.scrolled .fixed-header {
     0 4px 16px rgba(42, 122, 226, 0.08),
     0 2px 6px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  flex-wrap: nowrap;
+  width: fit-content;
 }
-.social-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 0;
+.profile-intro .social-links {
+  margin-top: 12px;
 }
 .social-links a,
 .social-links a:hover,
@@ -693,16 +691,19 @@ body.scrolled .fixed-header {
     width: 200px;
     margin: 0 auto;
   }
-  .avatar-block .social-links {
+  .profile-intro .social-links {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
     flex-wrap: nowrap;
     gap: 0;
     padding: 0.4rem 0.5rem;
     border-radius: 0.6rem;
   }
-  .avatar-block .social-links a {
+  .profile-intro .social-links a {
     padding: 0.25rem;
   }
-  .social-links img {
+  .profile-intro .social-links img {
     width: 1.3rem;
     height: 1.3rem;
   }
