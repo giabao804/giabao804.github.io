@@ -40,24 +40,24 @@ td,
 th,
 tr,
 p {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 16px;
 }
 
 a {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 16px;
 }
 
 strong {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Source Sans 3', Verdana, Helvetica, sans-serif;
   font-size: 16px;
 }
 
 h2 {
   margin: 0 0 20px 0;
   font-weight: normal;
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 26px;
   position: relative;
   display: inline-block;
@@ -79,7 +79,7 @@ h2:hover::after {
 }
 
 .papertitle {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 15px;
   font-weight: 700;
   color: var(--gray-900);
@@ -88,7 +88,7 @@ h2:hover::after {
 .name {
   padding-top: 20px;
   margin: 0;
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 32px;
   font-weight: normal;
   text-align: left;
@@ -96,7 +96,7 @@ h2:hover::after {
 
 .local-name {
   display: block;
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 22px;
   color: var(--gray-400);
   margin-top: 2px;
@@ -104,7 +104,7 @@ h2:hover::after {
 }
 
 .title {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 22px;
   font-weight: normal;
   text-align: left;
@@ -162,7 +162,7 @@ h2:hover::after {
   width: 75%;
   vertical-align: middle;
   border-bottom: 1px solid var(--border-light);
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 14px;
   font-weight: 300;
   color: var(--gray-700);
@@ -174,12 +174,12 @@ h2:hover::after {
   border-bottom: none;
 }
 .pub-content-cell a {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 14px;
   font-weight: 300;
 }
 .pub-content-cell strong {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 14px;
   font-weight: 700;
 }
@@ -189,7 +189,7 @@ h2:hover::after {
   font-size: 14px;
   font-style: italic;
   color: #4b5563;
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-weight: 300;
 }
 .pub-full {
@@ -206,7 +206,7 @@ body.pub-show-all .pub-full {
   color: var(--blue-700);
   text-decoration: none;
   cursor: pointer;
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 13px;
   font-weight: bold;
   padding: 6px 16px;
@@ -335,7 +335,7 @@ body.pub-show-all .pub-full {
 }
 
 .edu-school-vollkorn {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
 }
 
 /* --- Fixed upper bar (header) --- */
@@ -376,7 +376,7 @@ body.pub-show-all .pub-full {
   margin-left: 20px;
   font-size: 18px;
   font-weight: 500;
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   position: relative;
   transition: color 0.2s;
 }
@@ -406,7 +406,7 @@ body.pub-show-all .pub-full {
 .header-logo-link {
   display: flex;
   align-items: center;
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 22px;
 }
 
@@ -457,10 +457,10 @@ body.pub-show-all .pub-full {
 }
 
 #research strong {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
 }
 #experience strong {
-  font-family: 'Vollkorn', serif;
+  font-family: 'EB Garamond', serif;
 }
 
 /* Experience/education bullet details */
@@ -483,11 +483,11 @@ body.pub-show-all .pub-full {
 
 /* Avatar (main profile image) size - decrease max-width to make it smaller */
 .profile-table .profile-avatar img {
-  max-width: 220px;
-  width: 100%;
-  height: auto;
+  width: 220px;
+  height: 220px;
+  max-width: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 0;
   /* border: 3px solid var(--blue-700); */
   margin-top: 1.5em;  /* move profile image down */
 }
@@ -571,7 +571,9 @@ body.pub-show-all .pub-full {
     max-width: 200px;
   }
   .profile-table .profile-avatar img {
-    max-width: 200px;
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
   }
   .profile-table .profile-intro {
     padding-top: 12px;
