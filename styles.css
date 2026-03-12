@@ -96,7 +96,8 @@ h2:hover::after {
 
 .local-name {
   display: block;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  /* font-family: 'Lato', Verdana, Helvetica, sans-serif; */
+  font-family: 'Be Vietnam Pro', 'Inter', 'Roboto', sans-serif;
   font-size: 22px;
   color: var(--gray-400);
   margin-top: 2px;
