@@ -41,24 +41,24 @@ th,
 tr,
 p {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 19px;
+  font-size: 16px;
 }
 
 a {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 19px;
+  font-size: 16px;
 }
 
 strong {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 19px;
+  font-size: 16px;
 }
 
 h2 {
   margin: 0 0 20px 0;
   font-weight: normal;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 28px;
+  font-size: 26px;
   position: relative;
   display: inline-block;
 }
@@ -80,7 +80,7 @@ h2:hover::after {
 
 .papertitle {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--gray-900);
 }
@@ -89,7 +89,7 @@ h2:hover::after {
   padding-top: 20px;
   margin: 0;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: normal;
   text-align: left;
 }
@@ -97,7 +97,7 @@ h2:hover::after {
 .local-name {
   display: block;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   color: var(--gray-400);
   margin-top: 2px;
   margin-bottom: 12px;
@@ -105,7 +105,7 @@ h2:hover::after {
 
 .title {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: normal;
   text-align: left;
 }
@@ -163,7 +163,7 @@ h2:hover::after {
   vertical-align: middle;
   border-bottom: 1px solid var(--border-light);
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
   color: var(--gray-700);
 }
@@ -175,18 +175,18 @@ h2:hover::after {
 }
 .pub-content-cell a {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
 }
 .pub-content-cell strong {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
 }
 .pub-desc {
   margin-bottom: 15px;
   margin-top: 8px;
-  font-size: 16px;
+  font-size: 14px;
   font-style: italic;
   color: #4b5563;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
@@ -207,7 +207,7 @@ body.pub-show-all .pub-full {
   text-decoration: none;
   cursor: pointer;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   padding: 6px 16px;
   margin-top: 10px;
@@ -347,7 +347,7 @@ body.pub-show-all .pub-full {
   background-color: #ffffff;
   padding: 10px 0;
   z-index: 1000;
-  font-size: 1.15em;
+  font-size: 1.05em;
   border-bottom: 1px solid var(--border-light);
   box-shadow: none;
   transition: box-shadow 0.25s ease;
@@ -379,7 +379,7 @@ body.scrolled .fixed-header {
 
 .fixed-header nav a {
   margin-left: 20px;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 500;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   position: relative;
@@ -439,7 +439,7 @@ body.scrolled .fixed-header {
 .news-scroll li,
 .news-scroll .news-item {
   margin-bottom: 12px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.2;
 }
 .news-scroll::-webkit-scrollbar {
@@ -503,6 +503,37 @@ body.scrolled .fixed-header {
 }
 .profile-links {
   margin: 12px 0 0 0;
+}
+.contact-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  background: #f7f9ff;
+}
+.contact-bar a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e2e9f6;
+  color: var(--blue-700);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+.contact-bar a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+  text-decoration: none;
+}
+.contact-bar svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
 /* Avatar (main profile image) size - decrease max-width to make it smaller */
@@ -615,6 +646,10 @@ body.scrolled .fixed-header {
   .profile-table .profile-intro .profile-links {
     text-align: center;
   }
+  .contact-bar {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .profile-intro,
   .table-content-cell {
     overflow-wrap: break-word;
@@ -622,7 +657,7 @@ body.scrolled .fixed-header {
   }
   .fixed-header nav a {
     margin-left: 12px;
-    font-size: 14px;
+    font-size: 12px;
   }
   /* Experience & Education: stack logo above content on narrow screens (like Miscellanea) */
   #experience .section-table tr,
