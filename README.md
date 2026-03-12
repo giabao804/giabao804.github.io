@@ -1,4 +1,4 @@
-# Personal Homepage (Vibe Coding from Zero)
+# Personal Homepage
 
 This repo is a lightweight personal homepage. The goal is to build fast, iterate visually, and keep everything readable. No build tools required.
 
