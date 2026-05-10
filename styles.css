@@ -262,6 +262,7 @@ body.pub-show-all .pub-full {
 }
 .profile-intro {
   padding: 2.5%;
+  padding-left: calc(3.5% + 40px);
   width: 63%;
   vertical-align: middle;
 }
@@ -680,6 +681,8 @@ body.scrolled .fixed-header {
   .profile-table .profile-intro {
     order: 1;
     padding-top: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
     text-align: center;
   }
   .profile-table .name {
