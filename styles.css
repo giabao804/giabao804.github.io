@@ -179,6 +179,16 @@ h2:hover::after {
   font-size: 14px;
   font-weight: 300;
 }
+.pub-links {
+  margin-top: 4px;
+}
+.pub-links a,
+.pub-link-placeholder {
+  font-style: italic;
+}
+.pub-link-placeholder {
+  color: var(--gray-400);
+}
 .pub-content-cell strong {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
@@ -502,6 +512,41 @@ body.scrolled .fixed-header {
 /* Short info next to avatar (profile section only) */
 .profile-short {
   margin: 4px 0;
+}
+.profile-email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.profile-email .email-text {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  font-size: 14px; /* Adjust size as needed to match your layout */
+  letter-spacing: -0.02em; /* Keeps monospaced text looking tight and clean */
+}
+
+.profile-email a {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  color: inherit; /* Inherits the text color of the parent container */
+  text-decoration: none;
+}
+.profile-email a:hover {
+  color: var(--blue-700);
+  text-decoration: underline;
+}
+.no-break {
+  white-space: nowrap;
+}
+.email-icon {
+  margin-right: 4px;
+}
+.text-muted {
+  color: var(--gray-400);
+}
+.px-1 {
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 /* Social links dock below intro */
