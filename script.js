@@ -1,35 +1,42 @@
 (() => {
+  const VISIT_STORAGE_KEY = 'visit_count';
+  const VISIT_SESSION_KEY = 'visit_counted_session';
+  const OWNER_MODE_KEY = 'owner_mode';
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const toggleHeaderShadow = () => {
-    if (window.scrollY > 8) {
-      document.body.classList.add('scrolled');
-    } else {
-      document.body.classList.remove('scrolled');
+  const initializePublicationToggle = () => {
+    const showFullBtn = document.getElementById('showFullListBtn');
+    const showSelectedBtn = document.getElementById('showSelectedListBtn');
+
+    if (!showFullBtn || !showSelectedBtn) {
+      return;
     }
+
+    showFullBtn.addEventListener('click', () => {
+      document.body.classList.add('pub-show-all');
+      showFullBtn.classList.add('active');
+      showSelectedBtn.classList.remove('active');
+    });
+
+    showSelectedBtn.addEventListener('click', () => {
+      document.body.classList.remove('pub-show-all');
+      showSelectedBtn.classList.add('active');
+      showFullBtn.classList.remove('active');
+    });
   };
 
-  const revealTargets = [
-    '.profile-table',
-    '#bio',
-    '#research',
-    '#news',
-    '#publication',
-    '#experience',
-    '#education',
-    '#honors',
-    '.site-footer',
-  ];
+  const initializeReveal = () => {
+    const revealTargets = Array.from(document.querySelectorAll('.reveal-target'));
 
-  const elements = revealTargets
-    .flatMap((selector) => Array.from(document.querySelectorAll(selector)))
-    .filter((el, index, self) => self.indexOf(el) === index);
+    if (!revealTargets.length) {
+      return;
+    }
 
-  if (!prefersReducedMotion && elements.length) {
-    elements.forEach((el, index) => {
-      el.classList.add('reveal');
-      el.style.transitionDelay = `${index * 60}ms`;
-    });
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -40,12 +47,73 @@
           }
         });
       },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
 
-    elements.forEach((el) => observer.observe(el));
-  }
+    revealTargets.forEach((el) => observer.observe(el));
+  };
 
-  toggleHeaderShadow();
-  window.addEventListener('scroll', toggleHeaderShadow, { passive: true });
+  const updateOwnerModeFromQuery = () => {
+    const params = new URLSearchParams(window.location.search);
+    const adminParam = params.get('admin');
+
+    if (adminParam === '1') {
+      localStorage.setItem(OWNER_MODE_KEY, '1');
+      return;
+    }
+
+    if (adminParam === '0') {
+      localStorage.removeItem(OWNER_MODE_KEY);
+    }
+  };
+
+  const isOwnerModeEnabled = () => localStorage.getItem(OWNER_MODE_KEY) === '1';
+
+  const getVisitCountForSession = () => {
+    if (!sessionStorage.getItem(VISIT_SESSION_KEY)) {
+      const currentCount = Number.parseInt(localStorage.getItem(VISIT_STORAGE_KEY) || '0', 10);
+      const safeCount = Number.isNaN(currentCount) ? 0 : currentCount;
+      const nextCount = safeCount + 1;
+
+      localStorage.setItem(VISIT_STORAGE_KEY, String(nextCount));
+      sessionStorage.setItem(VISIT_SESSION_KEY, '1');
+      return nextCount;
+    }
+
+    const persistedCount = Number.parseInt(localStorage.getItem(VISIT_STORAGE_KEY) || '0', 10);
+    return Number.isNaN(persistedCount) ? 0 : persistedCount;
+  };
+
+  const renderVisitCounter = () => {
+    const visitCounter = document.getElementById('visitCounter');
+    if (!visitCounter) {
+      return;
+    }
+
+    const visits = getVisitCountForSession();
+    visitCounter.textContent = `👁 Visited ${visits} times`;
+    visitCounter.hidden = !isOwnerModeEnabled();
+  };
+
+  const initializeOwnerShortcut = () => {
+    document.addEventListener('keydown', (event) => {
+      if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'a') {
+        if (isOwnerModeEnabled()) {
+          localStorage.removeItem(OWNER_MODE_KEY);
+        } else {
+          localStorage.setItem(OWNER_MODE_KEY, '1');
+        }
+
+        renderVisitCounter();
+      }
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initializePublicationToggle();
+    initializeReveal();
+    updateOwnerModeFromQuery();
+    renderVisitCounter();
+    initializeOwnerShortcut();
+  });
 })();
