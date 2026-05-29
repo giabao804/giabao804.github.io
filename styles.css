@@ -312,8 +312,19 @@ body.pub-show-all .pub-full {
 .site-footer {
   margin-top: 40px;
   padding: 20px 0;
-  text-align: center;
   border-top: 1px solid var(--border-light);
+}
+.footer-main {
+  display: grid;
+  grid-template-columns: 5fr 5fr;
+  align-items: stretch;
+  column-gap: 16px;
+}
+.footer-left {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .footer-quote {
   color: var(--blue-900);
@@ -328,6 +339,17 @@ body.pub-show-all .pub-full {
 }
 .footer-credit a {
   color: var(--blue-700);
+}
+.footer-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-counter-image {
+  display: block;
+  width: 100%;
+  max-width: 305px;
+  height: auto;
 }
 
 /* Square thumbnails: keep image aspect ratio, no stretch */
@@ -791,6 +813,16 @@ body.scrolled .fixed-header {
   .site-footer {
     padding-left: 24px;
     padding-right: 24px;
+  }
+  .footer-main {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+  }
+  .footer-left {
+    text-align: center;
+  }
+  .footer-counter-image {
+    max-width: 240px;
   }
 }
 
