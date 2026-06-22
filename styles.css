@@ -20,7 +20,7 @@
 
 .papertitle {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: inherit;
   font-weight: 700;
   color: var(--gray-900);
 }
@@ -92,7 +92,7 @@
   vertical-align: middle;
   border-bottom: 1px solid var(--border-light);
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: inherit;
   font-weight: 300;
   color: var(--gray-700);
 }
@@ -104,7 +104,7 @@
 }
 .pub-content-cell a {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: inherit;
   font-weight: 300;
 }
 .pub-links {
@@ -119,13 +119,13 @@
 }
 .pub-content-cell strong {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: inherit;
   font-weight: 700;
 }
 .pub-desc {
   margin-bottom: 15px;
   margin-top: 8px;
-  font-size: 14px;
+  font-size: inherit;
   font-style: italic;
   color: #4b5563;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
@@ -214,50 +214,6 @@ body.pub-show-all .pub-full {
 #honors ul {
   margin: 0;
   padding-left: 20px;
-}
-
-/* Footer */
-.site-footer {
-  margin-top: 40px;
-  padding: 20px 0;
-  border-top: 1px solid var(--border-light);
-}
-.footer-main {
-  display: grid;
-  grid-template-columns: 5fr 5fr;
-  align-items: stretch;
-  column-gap: 16px;
-}
-.footer-left {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.footer-quote {
-  color: var(--blue-900);
-  font-style: italic;
-  font-size: 1.1em;
-  margin-bottom: 20px;
-}
-.footer-credit {
-  font-size: small;
-  color: #6b7280;
-  margin: 0;
-}
-.footer-credit a {
-  color: var(--blue-700);
-}
-.footer-counter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.footer-counter-image {
-  display: block;
-  width: 100%;
-  max-width: 305px;
-  height: auto;
 }
 
 /* Square thumbnails: keep image aspect ratio, no stretch */
@@ -648,20 +604,6 @@ body.scrolled .fixed-header {
   .section-table .table-logo-cell .logo-contain {
     max-width: 100%;
   }
-  .site-footer {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .footer-main {
-    grid-template-columns: 1fr;
-    row-gap: 14px;
-  }
-  .footer-left {
-    text-align: center;
-  }
-  .footer-counter-image {
-    max-width: 240px;
-  }
 }
 
 /* latin-ext */
@@ -745,7 +687,7 @@ html {
 
 body, td, th, tr, p, a {
   font-family: var(--font-main);
-  font-size: 15px; /* Increased for better readability */
+  font-size: 16px;
   font-weight: 300;
 }
 
@@ -807,7 +749,7 @@ p a:not(.header-logo-link):not(.toggle-button):hover::after {
 
 strong {
   font-family: var(--font-main);
-  font-size: 15px;
+  font-size: inherit;
   font-weight: 700;
 }
 
@@ -988,16 +930,48 @@ h3 {
   font-weight: bold;
 }
 
-footer {
-  padding: 20px 0; 
-  text-align: left; 
-  font-size: 12px; 
-  color: #888;
+/* Footer */
+.site-footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-light);
 }
-
-.footer-icon {
-  vertical-align: middle; 
-  margin-right: 5px;
+.footer-main {
+  display: grid;
+  grid-template-columns: 5fr 5fr;
+  align-items: stretch;
+  column-gap: 16px;
+}
+.footer-left {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer-quote {
+  color: var(--blue-900);
+  font-style: italic;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+.footer-credit {
+  font-size: small;
+  color: #6b7280;
+  margin: 0;
+}
+.footer-credit a {
+  color: var(--blue-700);
+}
+.footer-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-counter-image {
+  display: block;
+  width: 100%;
+  max-width: 305px;
+  height: auto;
 }
 
 /* --- Components & Utilities --- */
@@ -1031,7 +1005,7 @@ footer {
 /* --- Media Queries --- */
 @media screen and (max-width: 480px) {
   body, td, th, tr, p, a {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   strong {
@@ -1077,7 +1051,7 @@ footer {
   }
 
   .papertitle {
-    font-size: 12px;
+    font-size: inherit;
   }
 
   /* Force table cells to stack vertically on mobile */
