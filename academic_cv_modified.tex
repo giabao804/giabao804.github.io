@@ -1,0 +1,480 @@
+%
+%Academic CV LaTeX Template
+% Author: Dubasi Pavan Kumar
+% LinkedIn: https://www.linkedin.com/in/im-pavankumar/
+% License: MIT
+%
+% For errors, suggestions, or improvements, please contact:
+% Email: pavankumard.pg19.ma@nitp.ac.in
+%
+
+
+
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=2cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\small{#4}} \\
+        \textit{\large{#3}} &  \small{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+% Experience heading: bold role, regular-weight company, date on the right.
+\newcommand{\resumeExperience}[3]{
+\vspace{0.5mm}\item
+    \begin{tabularx}{0.98\textwidth}[t]{@{}Xr@{}}
+        \textbf{#1}, #2 & \small{#3}
+    \end{tabularx}
+    \vspace{-2.4mm}
+}
+
+% Education heading: institution and date, followed by the degree on a new line.
+\newcommand{\resumeEducation}[3]{
+\vspace{0.5mm}
+    \begin{tabularx}{\textwidth}[t]{@{}Xr@{}}
+        \textbf{#1} & \small{#2} \\
+        #3 &
+    \end{tabularx}
+    \vspace{-1.5mm}
+}
+
+\newcommand{\resumeProject}[3]{ % chỉ còn 3 tham số
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Bao Truong}}
+\end{center}
+\vspace{-4mm}
+
+\begin{center}
+    \small{
+    +84 974634986 | \href{mailto:giabaotruong.work@gmail.com}{giabaotruong.work@gmail.com} 
+    % \href{https://www.yourwebsite.com/}{yourwebsite.com}
+     }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/truong-gia-bao-006182254/}{Bao Truong} | 
+    \socialicon{\faGithub} \href{https://github.com/giabao804/}{giabao804} |
+    \socialicon{\faGoogle} \href{https://scholar.google.com/citations?user=mTOzZO8AAAAJ&hl=en}{Bao Truong}
+    }
+\end{center}
+\vspace{-6mm}
+
+\section{\textcolor{darkblue}{\textbf{Research Interests}}}
+\vspace{-0.4mm}
+
+My research interests lie at the intersection of \textbf{robotics}, \textbf{computer vision}, and \textbf{multimodal learning}, with a particular focus on \textbf{embodied AI}, \textbf{vision-language-action models}, \textbf{world models}, \textbf{robotic manipulation}, and \textbf{open-vocabulary perception}. More broadly, I aim to develop intelligent robotic systems that can \textbf{perceive}, \textbf{reason}, and \textbf{act} with human-like capabilities.
+
+\section{\textcolor{darkblue}{\textbf{Education}}}
+\vspace{-0.4mm}
+\resumeEducation
+    {Hanoi University of Science and Technology}
+    {2021 - 2025}
+    {BS in Automation and Control Engineering}
+\resumeItemListStart
+    \item \textcolor{orange}{CPA: 3.67/4.00} -- Excellent Degree.
+\resumeItemListEnd
+
+% \resumeEducation
+%     {Hatinh High School for Gifted Students}
+%     {2018 - 2021}
+%     {Gifted class in Mathematics}
+\vspace{-6mm}
+
+\section{\textcolor{darkblue}{\textbf{Experience}}}
+\vspace{-0.4mm}
+  \resumeSubHeadingListStart
+  \resumeExperience
+      {AI Researcher}
+      {FPT Software AI Center, Vietnam}
+      {May 2025 - present}
+      
+      \resumeItemListStart
+        \item Embodied AI and Computer Vision. Advisor: \textbf{Prof. Anh Nguyen}
+        \item Research topics: Multimodal Robot Learning, Generative Models, Image Restoration, Seismic Imageing.
+
+        \resumeItemListEnd 
+  \resumeExperience
+      {AI Engineer}
+      {VinBigData Joint Stock Company, Vietnam}
+      {July 2024 - May 2025}
+      
+      \resumeItemListStart
+       \item Automatic Speech Recognition, Speech-to-Speech.
+        \item Building a framework for generating a multimodal (audio-language) datasets that served as the foundation for training the CallBot, ensuring it learns accurate conversation patterns, function callings, and appropriate responses within the customer domains.
+        \item Developing a framework with suitable design patterns for automatically evaluating ASR, Speech2Speech models.
+      \resumeItemListEnd 
+  \resumeExperience
+      {Research Assistant}
+      {{Image Processing and Signal Analysis Lab [\href{https://sites.google.com/view/ipsal/home?authuser=0}{\faIcon{globe}}]}, Vietnam}
+      {May 2023 - present}
+      
+      \resumeItemListStart
+        \item Computer Vision and Signal Processing. Advisor: \textbf{Prof. Truong Pham}.
+        \item Research topics: Deep learning for Bearing Faults Diagnosis, Few-shot Learning, Medical Imaging.
+       
+
+      \resumeItemListEnd 
+  \resumeSubHeadingListEnd  
+\vspace{-6mm}
+
+
+\vspace{-3mm}
+\section{\textcolor{darkblue}{\textbf{Selected Publications} }}
+\vspace{0.2mm}
+\small{
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{S.1}]}, itemindent=0em, label={\textbf{[\arabic*]}]}]
+
+\item \textbf{Bao Truong}, Quang Nguyen, Baoru Huang, Jinpei Han, Van Nguyen, Ngan Le, Minh-Tan Pham, Doan Duy Hien, Anh Nguyen: \\{\textit{“SIGMA: A Physics-Based Benchmark for Gas Chimney Understanding in Seismic Images”}}.\\
+
+\href{https://arxiv.org/pdf/2603.23439}{\textcolor{darkblue}{CVPR 2026}}
+
+\item \textbf{Gia-Bao Truong}, Thi-Thao Tran, Nhu-Linh Than, Van Quang Nguyen, Thi-Hue Nguyen, Van-Truong Pham: \\{\textit{“SC-MambaFew: Few-shot learning based on Mamba and selective spatial-channel attention for bearing fault diagnosis”}}.\\
+\href{https://doi.org/10.1016/j.compeleceng.2024.110004}{\textcolor{darkblue}{Computers and Electrical Engineering.}}
+
+\item Viet-Thanh Nguyen, \textbf{Gia-Bao Truong}, Van-Truong Pham, Thi-Thao Tran: \\{\textit{“1S-MambaMatch: A semi-supervised and One-shot learning framework with Multi-input Visual State Space Model for skin lesion segmentation”}}.\\
+\href{https://doi.org/10.1016/j.bspc.2026.109875}{\textcolor{darkblue}{Biomedical Signal Processing and Control.}}
+
+\item Van Quang Nguyen, Thi-Thao Tran, \textbf{Gia-Bao Truong}, Nhu-Linh Than, Van-Truong Pham: \\
+{\textit{“Dense Attention Mamba-based Network with Adaptive Sigmoid Fowlkes-Mallows Loss for Enhanced Medical Image Segmentation”}}. \\
+\href{https://doi.org/10.1016/j.imavis.2025.105778}{\textcolor{darkblue}{Image and Vision Computing.}}
+
+
+
+% \item \textbf{Gia-Bao Truong}, Nhu-Linh Than, Manh-Hung Vu, Van-Truong Pham, Thi-Hue Nguyen, Thi Thao Tran, Van-Truong Pham: \\
+% {\textit{“A Bearing Fault Diagnosis Framework based on Few-Shot Learning with Distribution Consistency and Structural Reparameterization”}}. \\
+% \textbf{The 7th International Conference on Green Technology and Sustainable Development (GTSD 2024)}. \\
+% \href{https://doi.org/10.1007/978-3-031-76197-3_14}{\textcolor{darkblue}{https://doi.org/10.1007/978-3-031-76197-3\_14}}
+
+% \item Nhu-Linh Than, Van Quang Nguyen, \textbf{Gia-Bao Truong}, Van-Truong Pham and Thi-Thao Tran:\\
+% {\textit{“MixMamba-Fewshot: Mamba and Attention Mixer-based Method with
+% Few-Shot Learning for Bearing Fault Diagnosis”}}.\\ \textbf{Applied Intelligence.} \\
+% \href{https://doi.org/10.1007/s10489-025-06361-0}{\textcolor{darkblue}{https://doi.org/10.1007/s10489-025-06361-0}}\\
+
+
+
+\end{enumerate}
+
+\section{\textcolor{darkblue}{\textbf{Honors and Awards}}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {First Prize in Scientific Research Student Award }
+  {The 42nd HUST Annual Student Research Conference in 2025}
+  {}
+
+\resumeProject
+  {Academic Excellence Scholarship}
+  {HUST}
+  {}
+
+  % \resumeProject
+  % {Second Prize in Mathematics}
+  % {Hatinh Provincial Competition for Excellent Students in 2021}
+  % {}
+
+
+
+
+\resumeSubHeadingListEnd
+
+\vspace{-6mm}
+
+% \section{\textcolor{darkblue}{\textbf{Skills}}}
+% \vspace{-0.4mm}
+%  \resumeHeadingSkillStart
+%   \resumeSubItem{Programming: }
+%     {Python, C, MATLAB, BASH SCRIPT}
+%   \resumeSubItem{Framework: }
+%     {PyTorch, Sklearn, Pandas, Numpy, Git, Docker, Triton, Huggingface Transformer}
+
+  % \resumeSubItem{English: }
+  %   {Internal TOEIC 730/990}
+% \resumeSubItem{Cloud Technologies:}
+%     {Cloud Platform 1, Cloud Platform 2, Cloud Platform 3}
+%   \resumeSubItem{DevOps \& Version Control:}
+%     {Tool 1, Tool 2, Tool 3, Tool 4, Tool 5}
+%   \resumeSubItem{Specialized Area:}
+%     {Skill 1, Skill 2, Skill 3, Skill 4}
+%   \resumeSubItem{Mathematical \& Statistical Tools:}
+%     {Tool 1, Tool 2, Tool 3, Tool 4, Tool 5}
+%   \resumeSubItem{Other Tools \& Technologies:}
+%     {Tool 1, Tool 2, Tool 3, Tool 4, Tool 5}
+%   \resumeSubItem{Research Skills:}{Skill 1, Skill 2, Skill 3, Skill 4, Skill 5, Skill 6}
+ \resumeHeadingSkillEnd
+
+
+% \section{\textbf{Leadership Experience}}
+% \vspace{-0.4mm}
+% \resumeSubHeadingListStart
+% \resumeProject
+%   {Leadership Role A}
+%   {Organization/Institution Name}
+%   {Month Year - Month Year}
+%   {{}[\href{https://organization-a-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Key responsibility or achievement in this role
+%   \item Quantifiable impact or improvement made during tenure
+%   \item Initiative taken or project led
+% \resumeItemListEnd
+
+% \resumeProject
+%   {Leadership Role B}
+%   {Organization/Institution Name}
+%   {Month Year - Month Year}
+%   {{}[\href{https://organization-b-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Key responsibility or achievement in this role
+%   \item Quantifiable impact or improvement made during tenure
+%   \item Initiative taken or project led
+% \resumeItemListEnd
+
+% \resumeSubHeadingListEnd
+
+% \vspace{-6mm}
+
+% \section{\textbf{Volunteer Experience}}
+% \vspace{-0.4mm}
+% \resumeSubHeadingListStart
+% \resumeProject
+%   {Volunteer Role A}
+%   {Organization Name}
+%   {Month Year - Month Year}
+%   {{}[\href{https://volunteer-org-a-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Key responsibility or contribution in this role
+%   \item Impact of your volunteer work
+%   \item Skills developed or applied during this experience
+% \resumeItemListEnd
+
+% \resumeProject
+%   {Volunteer Role B}
+%   {Organization Name}
+%   {Month Year - Present}
+%   {{}[\href{https://volunteer-org-b-link.com}{\textcolor{darkblue}{\faIcon{globe}}}]}
+% \resumeItemListStart
+%   \item Key responsibility or contribution in this role
+%   \item Impact of your volunteer work
+%   \item Skills developed or applied during this experience
+% \resumeItemListEnd
+
+% \resumeSubHeadingListEnd
+% \vspace{-6mm}
+
+% \section{\textbf{Professional Memberships}}
+% \vspace{-0.4mm}
+% \resumeSubHeadingListStart
+% \resumePOR{Professional Organization A}
+%     {, Membership ID: XXXXXXXX}
+%     {Month Year - Present}
+% \resumePOR{Professional Organization B}
+%     {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+%     {Month Year - Present}
+% \resumePOR{Professional Organization C}
+%     {, \href{https://membership-certificate-link.com}{Membership ID: XXXXXXXX}}
+%     {Month Year - Present}
+
+% \resumeSubHeadingListEnd
+% \vspace{-6mm}
+
+% \section{\textbf{Certifications}}
+% \vspace{-0.2mm}
+% \resumeSubHeadingListStart
+% \resumePOR{}{\href{https://certification-link-a.com}{
+% \textbf{Certification A}
+% }}{Month Year}
+% \resumePOR{}{
+% \textbf{Certifying Body:} {{\href{https://certification-link-b.com}{Certification B}}}}{Month Year}
+% \resumePOR{}{
+% \textbf{Certifying Body:} {{\href{https://certification-link-c.com}{Certification C}}}}{Month Year}
+% \resumePOR{}{\href{https://certification-link-d.com}{
+% \textbf{Certification D}
+% }}{Month Year}
+
+% \resumeSubHeadingListEnd
+% \vspace{-6mm}
+
+% \section{\textbf{Additional Information}}
+% \vspace{-0.4mm}
+% \small{
+% \textbf{Languages:} Language A (Proficiency level), Language B (Proficiency level), Language C (Proficiency level)
+
+% \textbf{Interests:} Interest 1, Interest 2, Interest 3, Interest 4
+% }
+% \vspace{-4mm}
+
+
+\section{\textcolor{darkblue}{\textbf{References}}}
+\vspace{-0.2mm}
+\small{
+\begin{enumerate}[leftmargin=*,labelsep=2mm]
+
+\item \textbf{Assoc. Prof. Anh Nguyen}\\
+   Department of Computer Science,\\
+   University of Liverpool.\\
+   Email: anh.nguyen@liverpool.ac.uk\\
+   \href{https://www.csc.liv.ac.uk/~anguyen/}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.co.uk/citations?user=gEbaF0sAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
+   % \textit{Relationship: [e.g., Thesis Advisor, Manager, etc.]}
+
+\item \textbf{Assoc. Prof. Van-Truong Pham}\\
+   Department of Control Engineering and Automation,\\
+   School of Electrical and Electronic Engineering, Hanoi University of Science and Technology.\\
+   Email: truong.phamvan@hust.edu.vn\\
+   \href{https://sites.google.com/site/truongpvsite}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.com.tw/citations?user=8vX7c-cAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
+   % \textit{Relationship: [e.g., Thesis Advisor, Manager, etc.]}
+
+\item \textbf{Assoc. Prof. Thi-Thao Tran}\\
+   Department of Control Engineering and Automation,\\
+   School of Electrical and Electronic Engineering, Hanoi University of Science and Technology.\\
+   Email: thao.tranthi@hust.edu.vn\\
+   \href{https://sites.google.com/site/thaott3i/}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.com/citations?user=NX-jgPcAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
+
+
+\end{enumerate}
+}
+
+\end{document}
