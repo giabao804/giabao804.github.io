@@ -210,6 +210,11 @@ body.pub-show-all .pub-full {
   border-spacing: 0 24px;
 }
 
+#education .logo-contain {
+  width: 72px;
+  height: 72px;
+}
+
 /* Honors list */
 #honors ul {
   margin: 0;
