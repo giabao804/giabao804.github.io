@@ -937,6 +937,10 @@ h3 {
 }
 
 /* Footer */
+.site-footer[hidden] {
+  display: none;
+}
+
 .site-footer {
   margin-top: 40px;
   padding: 20px 0;

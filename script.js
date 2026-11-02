@@ -1,6 +1,4 @@
 (() => {
-  const VISIT_STORAGE_KEY = 'visit_count';
-  const VISIT_SESSION_KEY = 'visit_counted_session';
   const OWNER_MODE_KEY = 'owner_mode';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -69,42 +67,23 @@
 
   const isOwnerModeEnabled = () => localStorage.getItem(OWNER_MODE_KEY) === '1';
 
-  const getVisitCountForSession = () => {
-    if (!sessionStorage.getItem(VISIT_SESSION_KEY)) {
-      const currentCount = Number.parseInt(localStorage.getItem(VISIT_STORAGE_KEY) || '0', 10);
-      const safeCount = Number.isNaN(currentCount) ? 0 : currentCount;
-      const nextCount = safeCount + 1;
-
-      localStorage.setItem(VISIT_STORAGE_KEY, String(nextCount));
-      sessionStorage.setItem(VISIT_SESSION_KEY, '1');
-      return nextCount;
+  const renderFooterVisibility = () => {
+    const footer = document.getElementById('siteFooter');
+    if (footer) {
+      footer.hidden = !isOwnerModeEnabled();
     }
-
-    const persistedCount = Number.parseInt(localStorage.getItem(VISIT_STORAGE_KEY) || '0', 10);
-    return Number.isNaN(persistedCount) ? 0 : persistedCount;
-  };
-
-  const renderVisitCounter = () => {
-    const visitCounter = document.getElementById('visitCounter');
-    if (!visitCounter) {
-      return;
-    }
-
-    const visits = getVisitCountForSession();
-    visitCounter.textContent = `👁 Visited ${visits} times`;
-    visitCounter.hidden = !isOwnerModeEnabled();
   };
 
   const initializeOwnerShortcut = () => {
     document.addEventListener('keydown', (event) => {
-      if (event.altKey && event.shiftKey && event.key.toLowerCase() === 'a') {
+      if (event.altKey && event.shiftKey && event.code === 'KeyA') {
         if (isOwnerModeEnabled()) {
           localStorage.removeItem(OWNER_MODE_KEY);
         } else {
           localStorage.setItem(OWNER_MODE_KEY, '1');
         }
 
-        renderVisitCounter();
+        renderFooterVisibility();
       }
     });
   };
@@ -113,7 +92,7 @@
     initializePublicationToggle();
     initializeReveal();
     updateOwnerModeFromQuery();
-    renderVisitCounter();
+    renderFooterVisibility();
     initializeOwnerShortcut();
   });
 })();

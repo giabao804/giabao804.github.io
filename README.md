@@ -40,6 +40,18 @@ mkdir -p assets icons
 
 Open `index.html` in a browser. No server required.
 
+## Viewing the Visitor Total
+
+The footer is hidden by default. Its global visitor counter image still loads
+eagerly, so hiding the footer does not disable the existing counting service.
+
+- Open `index.html?admin=1` to show the footer and visitor total.
+- Open `index.html?admin=0` to hide it again.
+- Press **Alt + Shift + A** (Mac: **Option + Shift + A**) to toggle visibility.
+
+This visibility preference is saved in the current browser. The total comes from
+the existing global counter service; the visibility toggle is not authentication.
+
 ## Deploy to GitHub Pages
 
 1. Push this repo to GitHub.
