@@ -42,11 +42,16 @@ Open `index.html` in a browser. No server required.
 
 ## Viewing the Visitor Total
 
-The footer is hidden by default. Its global visitor counter image still loads
-eagerly, so hiding the footer does not disable the existing counting service.
+The public footer shows the copyright and latest content update date. Update both
+the `datetime` value and displayed date in its `<time>` element when editing the
+page; this date records content changes, not visits or page loads.
 
-- Open `index.html?admin=1` to show the footer and visitor total.
-- Open `index.html?admin=0` to hide it again.
+The visitor counter and original footer details are hidden by default. The global
+visitor counter image still loads eagerly, so hiding it does not disable the
+existing counting service.
+
+- Open `index.html?admin=1` to show the visitor total and original footer details.
+- Open `index.html?admin=0` to hide those details again.
 - Press **Alt + Shift + A** (Mac: **Option + Shift + A**) to toggle visibility.
 
 This visibility preference is saved in the current browser. The total comes from

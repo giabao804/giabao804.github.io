@@ -937,16 +937,29 @@ h3 {
 }
 
 /* Footer */
-.site-footer[hidden] {
+.footer-main[hidden] {
   display: none;
 }
 
 .site-footer {
-  margin-top: 40px;
-  padding: 20px 0;
+  margin-top: 24px;
+  padding: 16px;
   border-top: 1px solid var(--border-light);
 }
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 20px;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.footer-meta p {
+  margin: 0;
+}
 .footer-main {
+  margin-top: 20px;
   display: grid;
   grid-template-columns: 5fr 5fr;
   align-items: stretch;
