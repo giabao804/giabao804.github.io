@@ -176,12 +176,12 @@ body.pub-show-all .pub-full {
 /* .profile-table prefix is needed to beat `.main-container tbody td { padding: 0 }` */
 .profile-table .profile-avatar {
   padding-left: 16px;         /* left edge lines up with the sections below */
-  width: 220px;               /* same as the photo, so the intro sits right beside it */
+  width: 248px;               /* same as the photo, so the intro sits right beside it */
   vertical-align: middle;
   text-align: left;
 }
 .profile-table .profile-intro {
-  padding-left: 50px;         /* gap between photo and intro (~0.23x photo width) */
+  padding-left: 56px;         /* gap between photo and intro (~0.23x photo width) */
   vertical-align: middle;
 }
 /* Keep the intro block shorter than the photo (~0.8x): name and local name share one line */
@@ -194,8 +194,9 @@ body.pub-show-all .pub-full {
   margin: 2px 0;
 }
 .profile-table .name .local-name {
-  display: inline;
-  margin-left: 10px;
+  display: block;             /* own line, under "Bao Truong" */
+  margin-top: 6px;            /* small breathing room under "Bao Truong" */
+  font-size: 20px;            /* Times runs small next to Lato; 20px reads a bit larger than the 16px title */
 }
 
 /* Section tables (experience, education, skills) */
@@ -466,12 +467,12 @@ body.scrolled .fixed-header {
 
 /* Avatar (main profile image) size - decrease max-width to make it smaller */
 .profile-table .profile-avatar .profile-photo {
-  width: 220px;
-  height: 220px;
+  width: 248px;   /* keep in sync with .profile-table .profile-avatar width */
+  height: 248px;
   max-width: 100%;
   object-fit: cover;
   border-radius: 50%;
-  box-sizing: border-box;                    /* border stays inside the 220px */
+  box-sizing: border-box;                    /* border stays inside the photo size */
   border: 4px solid #fff;                    /* thin white ring */
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15); /* makes the white ring visible on the white page */
 }
@@ -571,10 +572,6 @@ body.scrolled .fixed-header {
   }
   .profile-table .name {
     text-align: center;
-  }
-  .profile-table .name .local-name {
-    display: block;           /* stacked layout: local name back on its own line */
-    margin-left: 0;
   }
   .profile-table .profile-intro .profile-short {
     text-align: center;
@@ -1091,6 +1088,10 @@ h3 {
 
   .name {
     font-size: 20px;
+  }
+
+  .profile-table .name .local-name {
+    font-size: 17px;   /* stay smaller than the 20px name on small phones */
   }
 
   .chinese_name {
