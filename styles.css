@@ -29,6 +29,7 @@
   display:block;
   font-family: "Times New Roman", Times, serif;
   font-size: 22px;
+  font-weight: 400;  /* stay regular so the bold "Bao Truong" stands out */
   color: #888;
 }
 
@@ -167,22 +168,34 @@ body.pub-show-all .pub-full {
   border-collapse: separate;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 24px;           /* space below the fixed header (moved here from the photo so the intro stays centered on it) */
 }
 .profile-table tbody tr {
   padding: 0;
 }
-.profile-avatar {
-  padding: 2.5%;
-  width: 37%;
-  max-width: 37%;
+/* .profile-table prefix is needed to beat `.main-container tbody td { padding: 0 }` */
+.profile-table .profile-avatar {
+  padding-left: 16px;         /* left edge lines up with the sections below */
+  width: 220px;               /* same as the photo, so the intro sits right beside it */
   vertical-align: middle;
-  text-align: center;
+  text-align: left;
 }
-.profile-intro {
-  padding: 2.5%;
-  padding-left: calc(3.5% + 40px);
-  width: 63%;
+.profile-table .profile-intro {
+  padding-left: 50px;         /* gap between photo and intro (~0.23x photo width) */
   vertical-align: middle;
+}
+/* Keep the intro block shorter than the photo (~0.8x): name and local name share one line */
+.profile-table .name {
+  padding-top: 0;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.profile-table .profile-short {
+  margin: 2px 0;
+}
+.profile-table .name .local-name {
+  display: inline;
+  margin-left: 10px;
 }
 
 /* Section tables (experience, education, skills) */
@@ -399,7 +412,12 @@ body.scrolled .fixed-header {
   width: fit-content;
 }
 .profile-intro .social-links {
-  margin-top: 12px;
+  margin-top: 8px;
+  padding: 0.4rem 0.55rem;
+}
+.profile-intro .social-links img {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 .social-links a,
 .social-links a:hover,
@@ -452,9 +470,10 @@ body.scrolled .fixed-header {
   height: 220px;
   max-width: 100%;
   object-fit: cover;
-  border-radius: 0;
-  /* border: 3px solid var(--blue-700); */
-  margin-top: 1.5em;  /* move profile image down */
+  border-radius: 50%;
+  box-sizing: border-box;                    /* border stays inside the 220px */
+  border: 4px solid #fff;                    /* thin white ring */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15); /* makes the white ring visible on the white page */
 }
 
 /* Responsive: stack avatar above intro on narrow viewports */
@@ -531,6 +550,7 @@ body.scrolled .fixed-header {
   }
   .profile-table .profile-avatar {
     order: -1;
+    padding-left: 0;
     padding-bottom: 0;
   }
   .profile-table .profile-avatar a {
@@ -551,6 +571,10 @@ body.scrolled .fixed-header {
   }
   .profile-table .name {
     text-align: center;
+  }
+  .profile-table .name .local-name {
+    display: block;           /* stacked layout: local name back on its own line */
+    margin-left: 0;
   }
   .profile-table .profile-intro .profile-short {
     text-align: center;
@@ -924,8 +948,8 @@ h3 {
   margin: 0 0 10px 0;
   font-family: var(--font-main);
   font-size: 32px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  font-weight: 700;   /* Lato is only loaded at 400/700, so 500 rendered as regular */
+  letter-spacing: 0;
 }
 
 /* --- New Classes extracted from HTML --- */

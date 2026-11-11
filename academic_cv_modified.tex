@@ -17,6 +17,7 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{ragged2e}
+\usepackage[empty]{fullpage}
 \usepackage{wrapfig}
 \usepackage{lipsum}
 \usepackage{tabularx}
@@ -42,8 +43,7 @@
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-% Keep the vertical page margins balanced while preserving the same usable height.
-\geometry{left=1.4cm, top=1.5cm, right=1.2cm, bottom=1.5cm}
+\geometry{left=1.4cm, top=2cm, right=1.2cm, bottom=2cm}
 \setlength{\footskip}{5pt} % Addressing fancyhdr warning
 
 % Hyperlink setup (moved after fancyhdr to address warning)
@@ -112,19 +112,9 @@
 \newcommand{\resumeExperience}[3]{
 \vspace{0.5mm}\item
     \begin{tabularx}{0.98\textwidth}[t]{@{}Xr@{}}
-        \textbf{#1}, #2 & \small{#3}
+        #1 & \small{#3}
     \end{tabularx}
     \vspace{-2.4mm}
-}
-
-% Education heading: institution and date, followed by the degree on a new line.
-\newcommand{\resumeEducation}[3]{
-\vspace{0.5mm}
-    \begin{tabularx}{\textwidth}[t]{@{}Xr@{}}
-        \textbf{#1} & \small{#2} \\
-        #3 &
-    \end{tabularx}
-    \vspace{-1.5mm}
 }
 
 \newcommand{\resumeProject}[3]{ % chỉ còn 3 tham số
@@ -160,6 +150,48 @@
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}%
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
 \newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% ---------- Experience timeline (two columns) ----------
+% Left column : period and location (right-aligned toward the timeline).
+% Right column: role title, company/lab, then research and what I did.
+% A thin vertical rule with one dot per entry links the entries into a timeline.
+\usepackage{tikz} % (already loaded by tcolorbox; listed for clarity)
+\newlength{\expleftwidth}\setlength{\expleftwidth}{3.4cm} % width of the left column
+\newlength{\exprightwidth}                                % computed in \expentry
+\newlength{\expgap}\setlength{\expgap}{3mm}               % space between entries
+\newcommand{\exprule}{{\color{darkblue!30}\vrule width 0.8pt}}
+% Dot centred on the rule (the rule sits 4mm + half its width left of the right column).
+\newcommand{\expdot}{\tikz[overlay]{%
+  \fill[white]    (-4mm-0.4pt,0.62ex) circle (3.3pt);%
+  \fill[darkblue] (-4mm-0.4pt,0.62ex) circle (2.2pt);}}
+% Bullet list used inside an experience entry.
+\newenvironment{expitems}
+  {\begin{itemize}[leftmargin=*,labelsep=1mm,topsep=0.6mm,partopsep=0pt,parsep=0pt,itemsep=0.3mm]\small}
+  {\end{itemize}}
+% \expentry{period}{location}{role}{company / lab}{details}
+\newcommand{\expentry}[5]{%
+  \par\nointerlineskip\noindent
+  \setlength{\exprightwidth}{\dimexpr\linewidth-\expleftwidth-7mm-0.8pt\relax}%
+  \begin{tabular}[t]{@{}>{\raggedleft\arraybackslash}p{\expleftwidth}%
+                     @{\hspace{3mm}\exprule\hspace{4mm}}%
+                     >{\raggedright\arraybackslash}p{\exprightwidth}@{}}%
+    {\small\textcolor{darkblue}{\textbf{#1}}\par}%
+    {\footnotesize\textcolor{black!60}{\textit{#2}}\par}%
+    &%
+    \leavevmode\expdot{\normalsize\textbf{#3}}\par
+    {\small\textit{#4}\par}%
+    #5%
+    \vspace{\expgap}%
+  \end{tabular}\par
+}
+
+% ---------- Publication lists ----------
+% Optional argument = extra enumitem options. Publications start the series "pubs";
+% \begin{publist}[resume=pubs] continues its numbering ([6], [7], ...).
+% Fixed label width so Publications and Under Review line up with each other.
+\newenvironment{publist}[1][]
+  {\begin{enumerate}[labelwidth=3em, labelsep=0.5em, leftmargin=3.5em, align=left, itemindent=0em, label={\textbf{[\arabic*]}}, #1]}
+  {\end{enumerate}}
 
 % Commands for icon sizing and positioning
 \newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
@@ -205,98 +237,132 @@
 
 \section{\textcolor{darkblue}{\textbf{Research Interests}}}
 \vspace{-0.4mm}
+I work on \textbf{embodied AI} at the intersection of robotics, computer vision, and multimodal learning, with a focus on \textbf{vision-language-action models}, \textbf{world models}, and \textbf{robotic manipulation}: building robots that can perceive, reason, and act in the physical world.
+\vspace{-2mm}
 
-My research interests lie at the intersection of \textbf{robotics}, \textbf{computer vision}, and \textbf{multimodal learning}, with a particular focus on \textbf{embodied AI}, \textbf{vision-language-action models}, \textbf{world models}, \textbf{robotic manipulation}, and \textbf{open-vocabulary perception}. More broadly, I aim to develop intelligent robotic systems that can \textbf{perceive}, \textbf{reason}, and \textbf{act} with human-like capabilities.
+% Longer version:
+% My research interests lie at the intersection of \textbf{robotics}, \textbf{computer vision}, and \textbf{multimodal learning}, with a particular focus on \textbf{embodied AI}, \textbf{vision-language-action models}, \textbf{world models}, \textbf{robotic manipulation}, and \textbf{open-vocabulary perception}. More broadly, I aim to develop intelligent robotic systems that can \textbf{perceive}, \textbf{reason}, and \textbf{act} with human-like capabilities.
 
 \section{\textcolor{darkblue}{\textbf{Education}}}
 \vspace{-0.4mm}
-\resumeEducation
-    {Hanoi University of Science and Technology}
-    {2021 - 2025}
-    {BS in Automation and Control Engineering}
-\resumeItemListStart
-    \item \textcolor{orange}{CPA: 3.67/4.00} -- Excellent Degree.
-\resumeItemListEnd
-
-% \resumeEducation
-%     {Hatinh High School for Gifted Students}
-%     {2018 - 2021}
-%     {Gifted class in Mathematics}
-\vspace{-6mm}
-
-\section{\textcolor{darkblue}{\textbf{Experience}}}
-\vspace{-0.4mm}
-  \resumeSubHeadingListStart
+\resumeSubHeadingListStart
   \resumeExperience
-      {AI Researcher}
-      {FPT Software AI Center, Vietnam}
-      {May 2025 - present}
+      {\textbf{Hanoi University of Science and Technology}}{}
+      {Sep 2021 - Sep 2025}
       
       \resumeItemListStart
-        \item Embodied AI and Computer Vision. Advisor: \textbf{Prof. Anh Nguyen}
-        \item Research topics: Multimodal Robot Learning, Generative Models, Image Restoration, Seismic Imageing.
-
+        \item B.S in Control Engineering and Automation
+        \item CPA: 3.67/4.00 - Excellent Degree
         \resumeItemListEnd 
   \resumeExperience
-      {AI Engineer}
-      {VinBigData Joint Stock Company, Vietnam}
-      {July 2024 - May 2025}
-      
+      {\textbf{Hatinh High School for Gifted Students}}{}
+      {Sep 2018 - Sep 2021}
       \resumeItemListStart
-       \item Automatic Speech Recognition, Speech-to-Speech.
-        \item Building a framework for generating a multimodal (audio-language) datasets that served as the foundation for training the CallBot, ensuring it learns accurate conversation patterns, function callings, and appropriate responses within the customer domains.
-        \item Developing a framework with suitable design patterns for automatically evaluating ASR, Speech2Speech models.
-      \resumeItemListEnd 
-  \resumeExperience
-      {Research Assistant}
-      {{Image Processing and Signal Analysis Lab [\href{https://sites.google.com/view/ipsal/home?authuser=0}{\faIcon{globe}}]}, Vietnam}
-      {May 2023 - present}
-      
-      \resumeItemListStart
-        \item Computer Vision and Signal Processing. Advisor: \textbf{Prof. Truong Pham}.
-        \item Research topics: Deep learning for Bearing Faults Diagnosis, Few-shot Learning, Medical Imaging.
-       
-
-      \resumeItemListEnd 
-  \resumeSubHeadingListEnd  
-\vspace{-6mm}
-
+        \item Mathematics Honors Class
+        \item Grade: 9.5/10
+        \resumeItemListEnd 
+\resumeSubHeadingListEnd
 
 \vspace{-3mm}
-\section{\textcolor{darkblue}{\textbf{Selected Publications} }}
+\section{\textcolor{darkblue}{\textbf{Publications}}}
 \vspace{0.2mm}
-\small{
-\begin{enumerate}[leftmargin=*, labelsep=0.5em, align=left, widest={[\textbf{S.1}]}, itemindent=0em, label={\textbf{[\arabic*]}]}]
+\small % body text stays \small from here to the end of the CV (same look as before)
+\begin{publist}[series=pubs]
 
-\item \textbf{Bao Truong}, Quang Nguyen, Baoru Huang, Jinpei Han, Van Nguyen, Ngan Le, Minh-Tan Pham, Doan Duy Hien, Anh Nguyen: \\{\textit{“SIGMA: A Physics-Based Benchmark for Gas Chimney Understanding in Seismic Images”}}.\\
+\item {\textbf{\textit{``SIGMA: A Physics-Based Benchmark for Gas Chimney Understanding in Seismic Images''}}}.\\
+\textbf{Bao Truong}, Quang Nguyen, Baoru Huang, Jinpei Han, Van Nguyen, Ngan Le, Minh-Tan Pham, Doan Duy Hien, Anh Nguyen.\\
+\href{https://arxiv.org/pdf/2603.23439}{\textcolor{darkblue}{IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2026.}}
 
-\href{https://arxiv.org/pdf/2603.23439}{\textcolor{darkblue}{CVPR 2026}}
-
-\item \textbf{Gia-Bao Truong}, Thi-Thao Tran, Nhu-Linh Than, Van Quang Nguyen, Thi-Hue Nguyen, Van-Truong Pham: \\{\textit{“SC-MambaFew: Few-shot learning based on Mamba and selective spatial-channel attention for bearing fault diagnosis”}}.\\
+\item {\textbf{\textit{``SC-MambaFew: Few-shot learning based on Mamba and selective spatial-channel attention for bearing fault diagnosis''}}}.\\
+\textbf{Bao Truong}, Thi-Thao Tran, Nhu-Linh Than, Van Quang Nguyen, Thi-Hue Nguyen, Van-Truong Pham.\\
 \href{https://doi.org/10.1016/j.compeleceng.2024.110004}{\textcolor{darkblue}{Computers and Electrical Engineering.}}
 
-\item Viet-Thanh Nguyen, \textbf{Gia-Bao Truong}, Van-Truong Pham, Thi-Thao Tran: \\{\textit{“1S-MambaMatch: A semi-supervised and One-shot learning framework with Multi-input Visual State Space Model for skin lesion segmentation”}}.\\
+\item {\textbf{\textit{``1S-MambaMatch: A semi-supervised and One-shot learning framework with Multi-input Visual State Space Model for skin lesion segmentation''}}}.\\
+Viet-Thanh Nguyen, \textbf{Bao Truong}, Van-Truong Pham, Thi-Thao Tran.\\
 \href{https://doi.org/10.1016/j.bspc.2026.109875}{\textcolor{darkblue}{Biomedical Signal Processing and Control.}}
 
-\item Van Quang Nguyen, Thi-Thao Tran, \textbf{Gia-Bao Truong}, Nhu-Linh Than, Van-Truong Pham: \\
-{\textit{“Dense Attention Mamba-based Network with Adaptive Sigmoid Fowlkes-Mallows Loss for Enhanced Medical Image Segmentation”}}. \\
+\item {\textbf{\textit{``Dense Attention Mamba-based Network with Adaptive Sigmoid Fowlkes-Mallows Loss for Enhanced Medical Image Segmentation''}}}.\\
+Van Quang Nguyen, Thi-Thao Tran, \textbf{Bao Truong}, Nhu-Linh Than, Van-Truong Pham.\\
 \href{https://doi.org/10.1016/j.imavis.2025.105778}{\textcolor{darkblue}{Image and Vision Computing.}}
+
+\item {\textbf{\textit{``A Bearing Fault Diagnosis Framework Based on Few-Shot Learning with Distribution Consistency and Structural Reparameterization''}}}.\\
+\textbf{Bao Truong}, Nhu-Linh Than, Manh-Hung Vu, Van-Truong Pham, Thi-Hue Nguyen, Thi-Thao Tran.\\
+\href{https://link.springer.com/chapter/10.1007/978-3-031-76197-3_14}{\textcolor{darkblue}{IEEE International Conference on Green Technology and Sustainable Development (GTSD), 2024.}}
 
 
 
 % \item \textbf{Gia-Bao Truong}, Nhu-Linh Than, Manh-Hung Vu, Van-Truong Pham, Thi-Hue Nguyen, Thi Thao Tran, Van-Truong Pham: \\
-% {\textit{“A Bearing Fault Diagnosis Framework based on Few-Shot Learning with Distribution Consistency and Structural Reparameterization”}}. \\
+% {\textit{``A Bearing Fault Diagnosis Framework based on Few-Shot Learning with Distribution Consistency and Structural Reparameterization''}}. \\
 % \textbf{The 7th International Conference on Green Technology and Sustainable Development (GTSD 2024)}. \\
 % \href{https://doi.org/10.1007/978-3-031-76197-3_14}{\textcolor{darkblue}{https://doi.org/10.1007/978-3-031-76197-3\_14}}
 
 % \item Nhu-Linh Than, Van Quang Nguyen, \textbf{Gia-Bao Truong}, Van-Truong Pham and Thi-Thao Tran:\\
-% {\textit{“MixMamba-Fewshot: Mamba and Attention Mixer-based Method with
-% Few-Shot Learning for Bearing Fault Diagnosis”}}.\\ \textbf{Applied Intelligence.} \\
+% {\textit{``MixMamba-Fewshot: Mamba and Attention Mixer-based Method with
+% Few-Shot Learning for Bearing Fault Diagnosis''}}.\\ \textbf{Applied Intelligence.} \\
 % \href{https://doi.org/10.1007/s10489-025-06361-0}{\textcolor{darkblue}{https://doi.org/10.1007/s10489-025-06361-0}}\\
 
+\end{publist}
 
+\section{\textcolor{darkblue}{\textbf{Under Review}}}
+\vspace{0.2mm}
+\begin{publist}[resume=pubs]
 
-\end{enumerate}
+\item {\textbf{\textit{``Learning Vision-Language-Olfaction Perception for Robotics Grasping''}}}.\\
+\textbf{Bao Truong} et al.\\
+\textcolor{darkblue}{Under submission, 2026.}
+
+\item {\textbf{\textit{``SPACE: Spectral-grounded Diffusion for Zero-shot Gas Chimney Enhancement''}}}.\\
+\textbf{Bao Truong} et al.\\
+\textcolor{darkblue}{Under submission, 2026.}
+
+\end{publist}
+
+\section{\textcolor{darkblue}{\textbf{Experience}}}
+\vspace{3.5mm}
+
+% \expentry{period}{location}{role}{company / lab}{details}
+\expentry
+  {Aug 2026 - Present}
+  {Vietnam}
+  {AI Researcher}
+  {Quantum AI \& Cyber Security Institute}
+  {\begin{expitems}
+     \item Research: \textit{Physical AI} $\cdot$ Advisor: \textbf{Prof. Anh Nguyen}
+     \item Research topics: Efficient World Models, Vision-Language-Action Models (VLAs).
+   \end{expitems}}
+
+\expentry
+  {May 2025 - Aug 2026}
+  {Vietnam}
+  {AI Research Resident}
+  {FPT Software AI Center}
+  {\begin{expitems}
+     \item Research: \textit{AI for Robotics and Computer Vision} $\cdot$ Advisor: \textbf{Prof. Anh Nguyen}
+     \item Research topics: Multimodal Robot Learning, Generative Models, Image Restoration, Seismic Imaging.
+   \end{expitems}}
+
+\expentry
+  {Jul 2024 - May 2025}
+  {Vietnam}
+  {AI Engineer}
+  {VinBigData Joint Stock Company}
+  {\begin{expitems}
+     \item Research: \textit{Automatic Speech Recognition, Speech-to-Speech}
+     \item Built a framework for generating a multimodal (audio-language) datasets that served as the foundation for training the CallBot, ensuring it learns accurate conversation patterns, function callings, and appropriate responses within the customer domains.
+     \item Developed suitable design patterns for automatically evaluating ASR, Speech2Speech models.
+   \end{expitems}}
+
+\expentry
+  {May 2023 - May 2025}
+  {Vietnam}
+  {Research Assistant}
+  {Image Processing and Signal Analysis Lab [\href{https://sites.google.com/view/ipsal/home?authuser=0}{\faIcon{globe}}]}
+  {\begin{expitems}
+     \item Research: \textit{Computer Vision and Signal Processing} $\cdot$ Advisor: \textbf{Prof. Truong Pham}
+     \item Research topics: Deep learning for Bearing Faults Diagnosis, Few-shot Learning, Medical Imaging.
+   \end{expitems}}
+
+\vspace{-2.5mm}
 
 \section{\textcolor{darkblue}{\textbf{Honors and Awards}}}
 \vspace{-0.4mm}
@@ -304,12 +370,12 @@ My research interests lie at the intersection of \textbf{robotics}, \textbf{comp
 
 \resumeProject
   {First Prize in Scientific Research Student Award }
-  {The 42nd HUST Annual Student Research Conference in 2025}
+  {The 42nd HUST Annual Student Research Conference, 2025}
   {}
 
 \resumeProject
   {Academic Excellence Scholarship}
-  {HUST}
+  {HUST, 2021}
   {}
 
   % \resumeProject
@@ -345,7 +411,7 @@ My research interests lie at the intersection of \textbf{robotics}, \textbf{comp
 %   \resumeSubItem{Other Tools \& Technologies:}
 %     {Tool 1, Tool 2, Tool 3, Tool 4, Tool 5}
 %   \resumeSubItem{Research Skills:}{Skill 1, Skill 2, Skill 3, Skill 4, Skill 5, Skill 6}
-% \resumeHeadingSkillEnd
+%  \resumeHeadingSkillEnd
 
 
 % \section{\textbf{Leadership Experience}}
@@ -453,25 +519,25 @@ My research interests lie at the intersection of \textbf{robotics}, \textbf{comp
 \small{
 \begin{enumerate}[leftmargin=*,labelsep=2mm]
 
-\item \textbf{Assoc. Prof. Anh Nguyen}\\
+\item \textbf{Prof. Anh Nguyen}\\
    Department of Computer Science,\\
    University of Liverpool.\\
    Email: anh.nguyen@liverpool.ac.uk\\
-   \href{https://www.csc.liv.ac.uk/~anguyen/}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.co.uk/citations?user=gEbaF0sAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
+   % \href{https://www.csc.liv.ac.uk/~anguyen/}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.co.uk/citations?user=gEbaF0sAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
    % \textit{Relationship: [e.g., Thesis Advisor, Manager, etc.]}
 
-\item \textbf{Assoc. Prof. Van-Truong Pham}\\
+\item \textbf{Prof. Truong Pham}\\
    Department of Control Engineering and Automation,\\
-   School of Electrical and Electronic Engineering, Hanoi University of Science and Technology.\\
+   Hanoi University of Science and Technology.\\
    Email: truong.phamvan@hust.edu.vn\\
-   \href{https://sites.google.com/site/truongpvsite}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.com.tw/citations?user=8vX7c-cAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
+   % \href{https://sites.google.com/site/truongpvsite}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.com.tw/citations?user=8vX7c-cAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
    % \textit{Relationship: [e.g., Thesis Advisor, Manager, etc.]}
 
-\item \textbf{Assoc. Prof. Thi-Thao Tran}\\
+\item \textbf{Prof. Thao Tran}\\
    Department of Control Engineering and Automation,\\
-   School of Electrical and Electronic Engineering, Hanoi University of Science and Technology.\\
+   Hanoi University of Science and Technology.\\
    Email: thao.tranthi@hust.edu.vn\\
-   \href{https://sites.google.com/site/thaott3i/}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.com/citations?user=NX-jgPcAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
+   % \href{https://sites.google.com/site/thaott3i/}{\textcolor{darkblue}{Bio}}; \href{https://scholar.google.com/citations?user=NX-jgPcAAAAJ&hl=en}{\textcolor{darkblue}{Google Scholar}} \\
 
 
 \end{enumerate}
